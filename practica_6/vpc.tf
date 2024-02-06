@@ -21,9 +21,9 @@ resource "aws_subnet" "private_subnet" {
   tags = {
     "Name" = "Private-subnet"
   }
-  depends_on = [
+  /* depends_on = [
     aws_instance.public_instance
-  ]
+  ] */
 }
 
 resource "aws_internet_gateway" "igw" {
