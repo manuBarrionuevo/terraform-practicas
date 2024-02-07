@@ -2,7 +2,7 @@ resource "aws_vpc" "vpc_virginia" {
   cidr_block       = var.nv_cidr
   instance_tenancy = "default"
   tags = {
-    "Name" = "VPC-DESA"
+    "Name" = "VPC-DESA-${local.sufix}" 
   }
 }
 
@@ -11,7 +11,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block              = var.subnet[0]
   map_public_ip_on_launch = true
   tags = {
-    "Name" = "Public-subnet"
+    "Name" = "Public-subnet-${local.sufix}"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_subnet" "private_subnet" {
   vpc_id     = aws_vpc.vpc_virginia.id
   cidr_block = var.subnet[1]
   tags = {
-    "Name" = "Private-subnet"
+    "Name" = "Private-subnet--${local.sufix}"
   }
   /* depends_on = [
     aws_instance.public_instance
@@ -29,7 +29,7 @@ resource "aws_subnet" "private_subnet" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc_virginia.id
   tags = {
-    Name = "igw vpc VN"
+    Name = "igw vpc VN-${local.sufix}"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_route_table" "public_crt" {
     gateway_id = aws_internet_gateway.igw.id
   }
 tags = {
-    Name = "public crt"
+    Name = "public crt-${local.sufix}"
   }
 }
 resource "aws_route_table_association" "crta_public_subnet" {
@@ -69,6 +69,6 @@ resource "aws_security_group" "sg_public_instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "Public Instance SG"
+    Name = "Public Instance SG-${local.sufix}"
   }
 }

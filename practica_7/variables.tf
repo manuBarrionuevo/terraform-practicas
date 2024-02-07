@@ -35,5 +35,10 @@ variable "ec2_specs" {
 
 variable "instancias" {
   description = "Nombres de las instancias"
-  type = set(string)  
+  type = list(string)  
+}
+
+variable "enable_monitoring" {
+  description = "Habilita el despliegue de un servidor de monitoreo"
+  type = bool
 }
