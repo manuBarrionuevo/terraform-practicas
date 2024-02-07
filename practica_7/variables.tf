@@ -32,3 +32,8 @@ variable "ec2_specs" {
   description = "Parametros de la instancia"
   type = map(string)
 }
+
+variable "instancias" {
+  description = "Nombres de las instancias"
+  type = set(string)  
+}
