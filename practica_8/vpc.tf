@@ -74,3 +74,12 @@ resource "aws_security_group" "sg_public_instance" {
     Name = "Public Instance SG-${local.sufix}"
   }
 }
+
+module "my_bucket" {
+  source = "./modulos/s3"
+  bucket_name = "nombreunico344564"
+}
+
+output "s3_arn" {
+  value = module.my_bucket.s3_arn
+}
