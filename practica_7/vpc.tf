@@ -53,13 +53,15 @@ resource "aws_security_group" "sg_public_instance" {
   description = "Allow SSH indbound traffic and ALL egress traffic"
   vpc_id = aws_vpc.vpc_virginia.id
 
-  ingress {
-    description = "SSH over Internet"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.sg_ingress_cidr]
+  dynamic "ingress" {
+    for_each = var.ingres_port_list
+    content {
+      from_port = ingress.value
+      to_port = ingress.value
+      protocol = "tcp"
+      cidr_blocks = [var.sg_ingress_cidr]
     
+    }
   }
 
   egress {

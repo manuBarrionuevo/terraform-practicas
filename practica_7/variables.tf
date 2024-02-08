@@ -42,3 +42,8 @@ variable "enable_monitoring" {
   description = "Habilita el despliegue de un servidor de monitoreo"
   type = bool
 }
+
+variable "ingres_port_list" {
+  description = "Lista de puertos ingress"
+  type = list(number)
+}

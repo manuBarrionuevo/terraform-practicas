@@ -1,4 +1,5 @@
-<<EOF
-#!/bin/bash
 echo "esto es un mensaje" > ~/mensaje.txt
-EOF
+yum update -y
+yum install httpd -y
+systemclt enable httpd
+systectl start httpd
