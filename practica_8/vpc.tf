@@ -77,9 +77,24 @@ resource "aws_security_group" "sg_public_instance" {
 
 module "my_bucket" {
   source = "./modulos/s3"
-  bucket_name = "nombreunico344564"
+  bucket_name = "nombreunico3445645"
 }
 
 output "s3_arn" {
   value = module.my_bucket.s3_bucket_arn
 }
+
+  #  module "terraform_state_backend" {
+  #    source = "cloudposse/tfstate-backend/aws"
+  #    # Cloud Posse recommends pinning every module to a specific version
+  #    version     = "0.38.1"
+  #    namespace  = "example"
+  #    stage      = "prod"
+  #    name       = "terraform09022024"
+  #    attributes = ["state"]
+  #    environment = "us-east-1"
+
+  #    terraform_backend_config_file_path = "."
+  #    terraform_backend_config_file_name = "backend.tf"
+  #    force_destroy                      = false
+  #  }
